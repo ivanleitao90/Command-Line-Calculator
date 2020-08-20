@@ -1,0 +1,122 @@
+using Microsoft.VisualBasic.CompilerServices;
+using System;
+using System.Globalization;
+using System.Runtime;
+using System.Threading;
+
+namespace IvansCLCalculator
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            Console.WriteLine("--------------------**********--------------------");
+            Console.WriteLine("...................CALCULADORA....................\n");
+
+            start:
+
+            Console.WriteLine("\nDigita o primeiro número.\n");
+
+            
+            //Primeiro Número
+            string stringNum1 = Console.ReadLine();
+            decimal decNum1 = 0;
+            bool firstCheck = Decimal.TryParse(stringNum1, out decNum1);
+
+            if (firstCheck == true)
+            {
+                goto next;
+            }
+
+            else if (firstCheck == false);
+            {
+                Console.WriteLine("Não introduziste um caracter válido. Volta a introduzir pf.\nSe estás a intoduzir valores decimais usa a vírgula e não o ponto.\n");
+                goto start;
+            }
+            
+            //Segundo Número
+            next:
+            Console.WriteLine("\nDigita o segundo número.\n");
+            string stringNum2 = Console.ReadLine();
+            decimal decNum2 = 0;
+            bool secondCheck = Decimal.TryParse(stringNum2, out decNum2);
+            if (secondCheck == true)
+            {
+                goto next2;
+            }
+
+            else if (secondCheck == false) ;
+            {
+                Console.WriteLine("\nNão introduziste um caracter válido. Volta a introduzir pf.\nSe estás a intoduzir valores decimais usa a vírgula e não o ponto.\n");
+                goto next;
+            }
+
+        //Operação
+        next2:
+            Console.WriteLine("\nEscolhe uma operação + " +
+                "\n a para adição;" +
+                "\n s para subtração;" +
+                "\n m para multiplicação;" +
+                "\n d para divisão.");
+            string operacao = Console.ReadLine();
+            string filtredOperationUpper = operacao.ToUpper();
+
+            if (filtredOperationUpper == "A")
+            {
+                Console.WriteLine($"O resultado é: {decNum1 + decNum2}.");
+                goto finnish;
+            }
+
+            else if (filtredOperationUpper == "S")
+            {
+                Console.WriteLine($"O resultado é: {decNum1 - decNum2}.");
+                goto finnish;
+            }
+
+            else if (filtredOperationUpper == "M")
+            {
+                Console.WriteLine($"O resultado é: {decNum1 * decNum2}.");
+                goto finnish;
+            }
+
+            else if (filtredOperationUpper == "D")
+            {
+                if (decNum2 == 0)
+                {
+                    Console.WriteLine("Erro matemática: o divisor não pode ser 0. Volta a escolher um divisor ou segundo número.");
+                    goto next;
+                }
+
+                else if (decNum2 != 0)
+                {
+                    Console.WriteLine($"O resultado é: {decNum1 / decNum2}.");
+                    goto finnish;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("A operação que introduziste não é válida, volta a introduzir pf.");
+                goto next2;
+            }
+
+        finnish:
+            Console.WriteLine("\nQueres fazer mais operações? Escolhe C para continuar ou qualuer outra tecla para sair.");
+            string continuar = Console.ReadLine();
+            string upperContinuar = continuar.ToUpper();
+            if (upperContinuar == "C")
+            {
+                goto start;
+            }
+
+
+
+            else
+            {
+                Console.WriteLine("ADEUS!"); 
+            }       
+            
+        }
+    }
+}
