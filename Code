@@ -102,7 +102,7 @@ namespace IvansCLCalculator
             }
 
         finnish:
-            Console.WriteLine("\nQueres fazer mais operações? Escolhe C para continuar ou qualuer outra tecla para sair.");
+            Console.WriteLine("\nQueres fazer mais operações? Escolhe C para continuar ou qualquer outra tecla para sair.");
             string continuar = Console.ReadLine();
             string upperContinuar = continuar.ToUpper();
             if (upperContinuar == "C")
